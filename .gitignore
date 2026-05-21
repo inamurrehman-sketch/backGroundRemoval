@@ -1,31 +1,40 @@
 # Virtual environment
 venv/
-env/
-.env
+.venv/
 
-# Python
+# Python Cache & Builds
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 *.egg-info/
 dist/
 build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+downloads/
 
-# OS
+# OS Files
 .DS_Store
+.DS_Store?
+._*
 Thumbs.db
+ehthumbs.db
 
-# IDE
+# IDEs and Editors
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
-# Git
-.git
-.github
+# Docker & Logs
+*.log
+logs/
 
-# Models (large files)
+# AI Models (Large Files)
 *.onnx
 .u2net/
-
-# Docker
-*.log
