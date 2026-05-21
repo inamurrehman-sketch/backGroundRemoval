@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Background Remover — Remove Image Backgrounds Instantly</title>
+    <meta name="description" content="Free AI-powered background remover. Upload any image and get a transparent PNG in seconds.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated background blobs -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">✨</span>
+                <h1>BG<span class="accent">Eraser</span></h1>
+            </div>
+            <p class="tagline">AI-Powered Background Removal in Seconds</p>
+        </header>
+
+        <!-- Upload Area -->
+        <div class="upload-section" id="upload-section">
+            <div class="upload-zone" id="upload-zone">
+                <div class="upload-icon">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                </div>
+                <h3>Drop your image here</h3>
+                <p>or click to browse</p>
+                <p class="file-types">Supports PNG, JPG, JPEG, WEBP</p>
+                <input type="file" id="file-input" accept="image/png,image/jpeg,image/jpg,image/webp" hidden>
+            </div>
+        </div>
+
+        <!-- Preview & Result Section -->
+        <div class="preview-section" id="preview-section" style="display: none;">
+            <div class="images-grid">
+                <!-- Original Image -->
+                <div class="image-card">
+                    <div class="card-header">
+                        <span class="card-badge original">📷 Original</span>
+                    </div>
+                    <div class="image-wrapper">
+                        <img id="original-preview" src="" alt="Original image">
+                    </div>
+                </div>
+
+                <!-- Result Image -->
+                <div class="image-card">
+                    <div class="card-header">
+                        <span class="card-badge result">✅ Result</span>
+                    </div>
+                    <div class="image-wrapper checkerboard">
+                        <img id="result-preview" src="" alt="Result image">
+                        <!-- Loading state -->
+                        <div class="loading-overlay" id="loading-overlay">
+                            <div class="spinner"></div>
+                            <p>Removing background...</p>
+                        </div>
+                        <!-- Placeholder -->
+                        <div class="placeholder" id="result-placeholder">
+                            <p>Click the button below to process</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="actions">
+                <button class="btn btn-primary" id="remove-btn">
+                    <span class="btn-icon">✨</span>
+                    Remove Background
+                </button>
+                <button class="btn btn-secondary" id="download-btn" style="display: none;">
+                    <span class="btn-icon">⬇️</span>
+                    Download PNG
+                </button>
+                <button class="btn btn-ghost" id="reset-btn">
+                    <span class="btn-icon">🔄</span>
+                    New Image
+                </button>
+            </div>
+
+            <!-- Status Message -->
+            <div class="status-message" id="status-message"></div>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h4>Lightning Fast</h4>
+                <p>Process images in seconds with our AI engine</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h4>Pixel Perfect</h4>
+                <p>Precise edge detection for clean results</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <h4>100% Private</h4>
+                <p>Your images are never stored on our servers</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built with ❤️ using FastAPI + rembg AI</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
