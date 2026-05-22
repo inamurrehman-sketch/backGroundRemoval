@@ -21,13 +21,14 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Test Backend
         run: |
-          python -m pytest || echo "No tests found, skipping..."
+          PYTHONPATH=. python -m pytest || echo "No tests found, skipping..."
 
       - name: Build Check
         run: |
           echo "Build check passed"
-          python -c "from backend.utils import remove_background; print('Utils imported successfully')"
+          PYTHONPATH=. python -c "from backend.utils import remove_background; print('Utils imported successfully')"
