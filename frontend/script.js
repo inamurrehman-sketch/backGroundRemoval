@@ -9,7 +9,8 @@
 
 // For local dev: "http://127.0.0.1:8000"
 // For production: set this to your GCP Cloud Run backend URL
-const API_BASE_URL = window.BACKEND_URL || "http://127.0.0.1:8000";
+// const API_BASE_URL = window.BACKEND_URL || "http://127.0.0.1:8000";
+const API_BASE_URL = "https://ai-bg-remover-backend-196737012157.us-central1.run.app";
 const API_ENDPOINT = `${API_BASE_URL}/remove-bg`;
 
 // ──────────────────────────────────────────────

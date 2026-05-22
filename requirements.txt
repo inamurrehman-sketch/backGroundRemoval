@@ -1,0 +1,18 @@
+# ──────────────────────────────────────────────
+#  AI Background Remover - Dependencies
+# ──────────────────────────────────────────────
+
+# Backend
+fastapi==0.115.0
+uvicorn==0.30.6
+python-multipart==0.0.9
+
+# AI / Image Processing
+rembg==2.0.67
+Pillow==10.4.0
+onnxruntime==1.19.2
+
+# Frontend
+streamlit==1.45.1
+requests==2.32.3
+

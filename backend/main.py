@@ -7,7 +7,8 @@ and return background-removed PNG images.
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import Response
 from fastapi.middleware.cors import CORSMiddleware
-from backend.utils import remove_background
+# from backend.utils import remove_background
+from utils import remove_background
 
 # Initialize FastAPI app
 app = FastAPI(
