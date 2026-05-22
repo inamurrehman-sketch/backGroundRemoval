@@ -1,45 +1,30 @@
 steps:
-  # ==================== BACKEND DEPLOYMENT ====================
-  - name: 'gcr.io/cloud-builders/gcloud'
+  # 1. Deploy Backend (Wait for completion)
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     id: 'Deploy Backend'
+    entrypoint: 'bash'
     args:
-      - 'run'
-      - 'deploy'
-      - 'ai-bg-remover-backend'           # Service Name (change kar sakte ho)
-      - '--source=.'
-      - '--region=asia-south1'            # Aapke hisab se change kar sakte ho (us-central1, asia-south1, etc.)
-      - '--platform=managed'
-      - '--allow-unauthenticated'
-      - '--port=8080'
-      - '--dockerfile=backend/Dockerfile'
-      - '--set-env-vars=ENV=production'
-    dir: '.'
+      - '-c'
+      - |
+        gcloud run deploy ai-bg-remover-backend \
+        --source=./backend \
+        --region=us-central1 \
+        --allow-unauthenticated \
+        --port=8080 \
+        --set-env-vars=ENV=production
 
-  # ==================== FRONTEND DEPLOYMENT ====================
-  - name: 'gcr.io/cloud-builders/gcloud'
+  # 2. Deploy Frontend (Wait for Backend to finish)
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     id: 'Deploy Frontend'
-    args:
-      - 'run'
-      - 'deploy'
-      - 'ai-bg-remover-frontend'          # Service Name
-      - '--source=.'
-      - '--region=asia-south1'
-      - '--platform=managed'
-      - '--allow-unauthenticated'
-      - '--port=8080'
-      - '--dockerfile=frontend/Dockerfile'
-    dir: '.'
-
-  # ==================== SHOW URLs AFTER DEPLOY ====================
-  - name: 'gcr.io/cloud-builders/gcloud'
-    id: 'Show Backend URL'
-    args: ['run', 'services', 'describe', 'ai-bg-remover-backend', '--region=asia-south1', '--format=value(status.url)']
     waitFor: ['Deploy Backend']
-
-  - name: 'gcr.io/cloud-builders/gcloud'
-    id: 'Show Frontend URL'
-    args: ['run', 'services', 'describe', 'ai-bg-remover-frontend', '--region=asia-south1', '--format=value(status.url)']
-    waitFor: ['Deploy Frontend']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud run deploy ai-bg-remover-frontend \
+        --source=./frontend \
+        --region=us-central1 \
+        --allow-unauthenticated
 
 options:
   logging: CLOUD_LOGGING_ONLY
