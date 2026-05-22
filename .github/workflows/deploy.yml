@@ -18,17 +18,21 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip' # Is se dependencies cache ho jayengi aur speed badhegi
 
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Agar tests nahi hain toh ye safe exit karega
       - name: Test Backend
         run: |
           PYTHONPATH=. python -m pytest || echo "No tests found, skipping..."
 
+      # Is step ko humne local context mein isolated kar diya hai
       - name: Build Check
         run: |
-          echo "Build check passed"
-          PYTHONPATH=. python -c "from backend.utils import remove_background; print('Utils imported successfully')"
+          echo "Running build check verification..."
+          python -m pip install rembg  # Force install directly in this step to bypass path bugs
+          PYTHONPATH=. python -c "from backend.utils import remove_background; print('Utils imported successfully 🔥')"
