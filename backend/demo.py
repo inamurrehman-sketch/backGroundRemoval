@@ -1,0 +1,5 @@
+print("Hello, pakistan")
+print("Hello, pakistan")
+print("Hello, pakistan")
+print("Hello, pakistan")
+print("Hello, pakistan")
