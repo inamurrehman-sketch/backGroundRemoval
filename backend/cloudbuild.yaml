@@ -1,24 +1,24 @@
 steps:
   # Backend: Direct Deploy (No push to registry required)
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    id: 'Deploy Backend'
-    entrypoint: 'bash'
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    id: "Deploy Backend"
+    entrypoint: "bash"
     args:
-      - '-c'
+      - "-c"
       - |
         gcloud run deploy ai-bg-remover-backend \
-        --source=./backend \
+        --source=. \
         --region=us-central1 \
         --allow-unauthenticated \
         --port=8080
 
   # Frontend: Direct Deploy
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    id: 'Deploy Frontend'
-    waitFor: ['Deploy Backend']
-    entrypoint: 'bash'
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    id: "Deploy Frontend"
+    waitFor: ["Deploy Backend"]
+    entrypoint: "bash"
     args:
-      - '-c'
+      - "-c"
       - |
         gcloud run deploy ai-bg-remover-frontend \
         --source=./frontend \
